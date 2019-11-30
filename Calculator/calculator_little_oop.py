@@ -1,5 +1,21 @@
 from tkinter import *
 
+def btn_click(numbers):
+    global operator, text_input
+    operator = operator + str(numbers)
+    text_input.set(operator)
+
+def btn_clear_display():
+    global operator, text_input
+    operator = ""
+    text_input.set("")
+
+def btn_equals():
+    global operator, text_input
+    text_input.set(str(eval(operator)))
+    operator=str(eval(operator))
+
+
 class BTN:
     global Calculator
 
@@ -8,8 +24,15 @@ class BTN:
         self.r = r
         self.c = c
 
-        Button(Calculator, padx=16, pady=16, bd=8, bg=color, fg="black", font=("Arial", 20, "bold"),
-               text=str(self.element)).grid(row=self.r, column=self.c) # FIX ME: ADD Command
+        if self.element == "C":
+            Button(Calculator, padx=16, pady=16, bd=8, bg=color, fg="black", font=("Arial", 20, "bold"),
+                   text=str(self.element), command=btn_clear_display).grid(row=self.r, column=self.c)
+        elif self.element == "=":
+            Button(Calculator, padx=16, pady=16, bd=8, bg=color, fg="black", font=("Arial", 20, "bold"),
+                   text=str(self.element), command=btn_equals).grid(row=self.r, column=self.c)
+        else:
+            Button(Calculator, padx=16, pady=16, bd=8, bg=color, fg="black", font=("Arial", 20, "bold"),
+               text=str(self.element), command=lambda: btn_click(self.element)).grid(row=self.r, column=self.c)
 
 
 def main():
