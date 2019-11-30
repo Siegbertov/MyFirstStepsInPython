@@ -1,13 +1,20 @@
 from tkinter import *
 
 def btnClick(numbers):
-    pass
+    global operator
+    operator +=str(numbers)
+    text_input.set(operator)
 
 def btnClearDisplay():
-    pass
+    global operator
+    operator = ""
+    text_input.set("")
 
 def btnEquals():
-    pass
+    global operator
+    result = str(eval(operator))
+    text_input.set(result)
+    operator = result
 
 Calculator =Tk()
 Calculator.title("Caclulator by Siegbertov")
